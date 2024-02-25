@@ -31,12 +31,12 @@ This is a simple social media web application built using Flask, a Python web fr
 - JavaScript: Used for client-side interactions and form validation.
 
 ## Screenshots 
-![Screenshot (222)](https://github.com/Shreenithi2003/Socialmedia-app/assets/143317948/dd9881b2-2f6c-4b85-b1dd-ba56192de509)
-![Screenshot (223)](https://github.com/Shreenithi2003/Socialmedia-app/assets/143317948/76154686-ec70-40a6-bf50-297f1be8d742)
-![Screenshot (224)](https://github.com/Shreenithi2003/Socialmedia-app/assets/143317948/b98549eb-79ab-4cdd-9815-d667507e7403)
-![Screenshot (225)](https://github.com/Shreenithi2003/Socialmedia-app/assets/143317948/e83970fd-f984-414b-9b0b-708ea5a6853c)
-![Screenshot (226)](https://github.com/Shreenithi2003/Socialmedia-app/assets/143317948/0a462da5-1165-473e-bade-9645c4958bdb)
-![Screenshot (227)](https://github.com/Shreenithi2003/Socialmedia-app/assets/143317948/843679cc-0830-465e-8a9d-6aaee7e244b2)
-![Screenshot (228)](https://github.com/Shreenithi2003/Socialmedia-app/assets/143317948/f2bf3b46-607c-49c4-979d-4f962545f7f1)
+![Screenshot (222)](https://github.com/Shreenithi2003/Socialmedia-app/assets/143317948/7bd3805e-7a8b-480a-9b83-6633f628f0ec)
+![Screenshot (223)](https://github.com/Shreenithi2003/Socialmedia-app/assets/143317948/0cc127a0-af33-4bad-a545-9244a6077b9c)
+![Screenshot (224)](https://github.com/Shreenithi2003/Socialmedia-app/assets/143317948/64d810f4-a2c8-47de-beea-18a2dc82fcbf)
+![Screenshot (225)](https://github.com/Shreenithi2003/Socialmedia-app/assets/143317948/4817cf1d-9261-44a8-a397-83876d7842f7)
+![Screenshot (226)](https://github.com/Shreenithi2003/Socialmedia-app/assets/143317948/a7f47e27-f4fe-4226-b878-60f0b1b64954)
+![Screenshot (227)](https://github.com/Shreenithi2003/Socialmedia-app/assets/143317948/497ba551-1af5-44c1-b551-d8597f1cfdfe)
+![Screenshot (228)](https://github.com/Shreenithi2003/Socialmedia-app/assets/143317948/5f9b3bef-f4e5-4e91-bca3-eca15e29c6cc)
 
 
