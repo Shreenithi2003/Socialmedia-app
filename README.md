@@ -31,4 +31,12 @@ This is a simple social media web application built using Flask, a Python web fr
 - JavaScript: Used for client-side interactions and form validation.
 
 ## Screenshots 
-![Screenshot (228)](https://github.com/Shreenithi2003/Socialmedia-app/assets/143317948/6cca6144-0d1b-4d92-b35f-160d47094b60)
+![Screenshot (222)](https://github.com/Shreenithi2003/Socialmedia-app/assets/143317948/dd9881b2-2f6c-4b85-b1dd-ba56192de509)
+![Screenshot (223)](https://github.com/Shreenithi2003/Socialmedia-app/assets/143317948/76154686-ec70-40a6-bf50-297f1be8d742)
+![Screenshot (224)](https://github.com/Shreenithi2003/Socialmedia-app/assets/143317948/b98549eb-79ab-4cdd-9815-d667507e7403)
+![Screenshot (225)](https://github.com/Shreenithi2003/Socialmedia-app/assets/143317948/e83970fd-f984-414b-9b0b-708ea5a6853c)
+![Screenshot (226)](https://github.com/Shreenithi2003/Socialmedia-app/assets/143317948/0a462da5-1165-473e-bade-9645c4958bdb)
+![Screenshot (227)](https://github.com/Shreenithi2003/Socialmedia-app/assets/143317948/843679cc-0830-465e-8a9d-6aaee7e244b2)
+![Screenshot (228)](https://github.com/Shreenithi2003/Socialmedia-app/assets/143317948/f2bf3b46-607c-49c4-979d-4f962545f7f1)
+
+
