@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        header {
+            background-color: #007bff;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        .profile {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .profile img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #007bff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .edit-profile-container {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .edit-profile-container.show {
+            display: block;
+        }
+        .edit-profile-container input[type="text"],
+        .edit-profile-container input[type="file"] {
+            padding: 8px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .button-container button {
+            border: none;
+            outline: none;
+            cursor: pointer;
+            margin: 0 10px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+        .button-container button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .post-container {
+            margin-top: 20px;
+            border-top: 2px solid #007bff;
+            padding-top: 20px;
+        }
+        .post {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .post img {
+            max-width: 100%;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .post p {
+            margin: 0;
+            font-size: 16px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input[type="file"] {
+            display: none;
+        }
+        .form-group .custom-file-upload {
+            border: 1px solid #ccc;
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+        }
+        .form-group .custom-file-upload:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>User Profile</h1>
+    </header>
+    <div class="container">
+        <div class="profile">
+            <img id="profile-pic" src="profile.jpg" alt="Profile Picture">
+            <div class="edit-profile-container" id="edit-profile-container">
+                <input type="text" id="edit-username" placeholder="Enter new username">
+                <input type="text" id="edit-bio" placeholder="Enter new bio">
+                <input type="file" id="edit-profile-pic" accept="image/*">
+                <button onclick="saveChanges()">Save Changes</button>
+            </div>
+        </div>
+        <div class="button-container">
+            <button onclick="toggleEditProfile()">Edit Profile</button>
+            <button onclick="openAddPostForm()">Add Post</button>
+            <button onclick="redirectTo('search_users')">Search Users</button>
+        </div>
+        <div id="add-post-form" style="display: none;">
+            <h2>Add Post</h2>
+            <form id="post-form">
+                <div class="form-group">
+                    <label for="post-image">Upload Image:</label>
+                    <input type="file" id="post-image" accept="image/*" required>
+                    <label class="custom-file-upload" for="post-image">Choose File</label>
+                </div>
+                <div class="form-group">
+                    <label for="post-content">Content:</label>
+                    <textarea id="post-content" placeholder="Enter your content" required></textarea>
+                </div>
+                <button type="button" onclick="addPost()">Submit</button>
+            </form>
+        </div>
+        <div class="post-container" id="post-container">
+            <!-- Posts will be dynamically added here -->
+        </div>
+    </div>
+
+    <script>
+        let profilePictureURL = "profile.jpg"; // Store the initial profile picture URL
+
+        function toggleEditProfile() {
+            const editProfileContainer = document.getElementById('edit-profile-container');
+            editProfileContainer.classList.toggle('show');
+        }
+
+        function redirectTo(action) {
+            if (action === 'search_users') {
+                // Redirect to search users page
+                window.location.href = "{{ url_for('search_users_page') }}";
+            }
+        }
+
+        function openAddPostForm() {
+            const addPostForm = document.getElementById('add-post-form');
+            addPostForm.style.display = 'block';
+        }
+
+        function addPost() {
+            const image = document.getElementById('post-image').files[0];
+            const content = document.getElementById('post-content').value;
+
+            // Create post element
+            const postElement = document.createElement('div');
+            postElement.classList.add('post');
+            const imgElement = document.createElement('img');
+            imgElement.src = URL.createObjectURL(image);
+            const pElement = document.createElement('p');
+            pElement.textContent = content;
+            postElement.appendChild(imgElement);
+            postElement.appendChild(pElement);
+
+            // Append post element to post container
+            const postContainer = document.getElementById('post-container');
+            postContainer.appendChild(postElement);
+
+            // Reset form and hide form after submission
+            document.getElementById('post-form').reset();
+            document.getElementById('add-post-form').style.display = 'none';
+        }
+
+        function saveChanges() {
+            const newUsername = document.getElementById('edit-username').value;
+            const newBio = document.getElementById('edit-bio').value;
+            const newProfilePic = document.getElementById('edit-profile-pic').files[0];
+
+            // You can perform AJAX request to save changes on the server
+            // For simplicity, let's just update the profile information here
+            if (newUsername) {
+                document.getElementById('profile-pic').setAttribute("alt", newUsername);
+            }
+            if (newBio) {
+                document.getElementById('profile-pic').setAttribute("title", newBio);
+            }
+            if (newProfilePic) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    profilePictureURL = event.target.result; // Update the profile picture URL
+                    document.getElementById('profile-pic').src = profilePictureURL;
+                };
+                reader.readAsDataURL(newProfilePic);
+            }
+            toggleEditProfile(); // Hide edit profile section after saving changes
+        }
+    </script>
+</body>
+</html>

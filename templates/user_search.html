@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        textarea {
+            resize: none;
+            height: 100px;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        #image-preview {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            display: none;
+        }
+       
+    </style>
+</head>
+<body>
+    <h1>User Search</h1>
+    <form action="{{ url_for('search_users_page') }}" method="GET">
+        <input type="text" name="query" placeholder="Search users" required>
+        <button type="submit">Search</button>
+    </form>
+    {% if users %}
+    <ul>
+        {% for user in users %}
+        <li>
+            <span>{{ user.username }}</span>
+            {% if user.found %}
+            <span class="status">User found</span>
+            <button class="follow-btn">Follow</button>
+            <button class="neglat-btn">Neglat</button>
+            {% else %}
+            <span class="status">User not found</span>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% if current_user.is_authenticated %}
+    <p>Your username is "{{ current_user.username }}"</p>
+    {% else %}
+    <p>You are not logged in. <a href="{{ url_for('login') }}">Log in</a> to see if your name is available.</p>
+    {% endif %}
+    <script>
+        // Add event listeners for follow and neglat buttons
+        document.querySelectorAll('.follow-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                button.classList.add('following');
+                button.textContent = 'Following';
+            });
+        });
+
+        document.querySelectorAll('.neglat-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                window.location.href = "{{ url_for('profile_page') }}";
+            });
+        });
+
+        // Add event listener for search form submission
+        document.querySelector('form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            let query = document.querySelector('input[name="query"]').value;
+            alert('Searching for user: ' + query);
+            // You can perform further actions here, such as sending an AJAX request to search for the user
+        });
+    </script>
+</body>
+</html>
